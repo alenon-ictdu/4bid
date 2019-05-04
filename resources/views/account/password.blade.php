@@ -1,0 +1,85 @@
+@extends('layouts.app2')
+
+@section('styles')
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+@stop
+
+@section('content')
+
+@if(count($errors) > 0)
+<div class="col-md-6 offset-md-3">
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Error(s):</strong> 
+       <ul>
+          @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+       </ul>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+</div>
+@endif
+
+<div class="col-md-6 offset-md-3 grid-margin stretch-card">
+    <div class="card">
+      	<div class="card-body">
+        <h4 class="card-title">Update Password</h4>
+        <div class="media border p-3">
+		  <img src="{{ Auth::user()->image == '' ? asset('admin/images/faces/default_image.png'):asset('uploads/user/'.Auth::user()->image) }}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:100px;">
+		  <div class="media-body">
+		    <h4 style="margin-top: 20px;" class="text-capitalize display-3">{{ Auth::user()->firstname. ' ' .Auth::user()->middlename. ' ' .Auth::user()->lastname }}</h4>
+		    <p>{{ Auth::user()->email }}</p>
+		  </div>
+		</div>
+		<hr>
+		<form class="forms-sample" method="POST" action="{{ route('account.password.update') }}">
+			{{ csrf_field() }}
+            <div class="form-group">
+              <label>Old Password</label>
+              <input type="password" name="oldpassword" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password" name="newpassword" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Retype New Password</label>
+              <input type="password" name="newpasswordconfirmation" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success mr-2">Save Changes</button>
+          </form>
+      	</div>
+	</div>
+</div>
+@stop
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+	@if(Session::has('success'))
+    toastr.success(
+    '',
+    '{{ Session::get('success') }}',
+    {
+        timeOut: 3000,
+        fadeOut: 1000,
+        closeButton: true
+      }
+    );
+  @endif
+
+  @if(Session::has('error'))
+    toastr.error(
+    '',
+    '{{ Session::get('error') }}',
+    {
+        timeOut: 3000,
+        fadeOut: 1000,
+        closeButton: true
+      }
+    );
+  @endif
+</script>
+@stop
