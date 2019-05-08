@@ -119,6 +119,46 @@
       }
     }
 
+    @media (max-width: 400px) {
+      .cards tbody tr {
+          float: left;
+          margin-left: -19px !important;
+          border: 1px solid #aaa;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+          background-color: white;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .cards tbody tr {
+          float: left;
+          margin-left: -19px !important;
+          border: 1px solid #aaa;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+          background-color: white;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .cards tbody tr {
+          float: left;
+          margin-left: -30px !important;
+          border: 1px solid #aaa;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+          background-color: white;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .cards tbody tr {
+          float: left;
+          margin-left: -40px !important;
+          border: 1px solid #aaa;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+          background-color: white;
+      }
+    }
+
 </style>
 @stop
 
@@ -143,73 +183,12 @@
     </div>
   </div>
 </div>
-{{-- Search Box : <input type="text" id="searchbox"> --}}
-{{-- <div class="col-md-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Newly Added <span class="badge badge-danger blink_me ml-1"> Hot! </span></h4>
-              <div class="table-responsive">
-                <table id="newlyAddedTable" class="table table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Car Model</th>
-                      <th>Description</th>
-                      <th>Floor Price</th>
-                      <th>Highest Bid</th>
-                      <th>Due Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($newlyAddedProducts as $row)
-                    @if($row->duration2 <= $today)
-                    <tr>
-                      <td><img style="width: 100px; height: 100px; border-radius: 5%;" src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
-                      <td><a href="{{ route('item.details', $row->id) }}" class="font-weight-bold">{{ $row->name }}</a> @if($row->user_id == Auth::user()->id) <span class="badge badge-primary ml-1"> Your Item </span> @endif </td>
-                      <td>
-                        <ul class="list-arrow">
-                          <li>{{ $row->name }}</li>
-                          <li>{{ $row->brand }}</li>
-                          <li>{{ $row->color }}</li>
-                          <li>{{ $row->series }}</li>
-                          <li>{{ $row->year }}</li>
-                        </ul>
-                      </td>
-                      <td>₱ {{ $row->price }}</td>
-                      <td>{{ $row->h_bid != 'none' ? '₱ '.$row->h_bid:'' }}</td>
-                      <td> Not Available </td>
-                    </tr>
-                    @else
-                    <tr>
-                      <td><img style="width: 100px; height: 100px; border-radius: 5%;" src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
-                      <td><a href="{{ route('item.details', $row->id) }}" class="font-weight-bold">{{ $row->name }}</a> @if($row->user_id == Auth::user()->id) <span class="badge badge-primary ml-1"> Your Item </span> @endif </td>
-                      <td>
-                        <ul class="list-arrow">
-                          <li>{{ $row->name }}</li>
-                          <li>{{ $row->brand }}</li>
-                          <li>{{ $row->color }}</li>
-                          <li>{{ $row->series }}</li>
-                          <li>{{ $row->year }}</li>
-                        </ul>
-                      </td>
-                      <td>₱ {{ $row->price }}</td>
-                      <td>{{ $row->h_bid != 'none' ? '₱ '.$row->h_bid:'' }}</td>
-                      <td>{{ $row->duration }}</td>
-                    </tr>
-                    @endif
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-      </div>
-    </div>
-</div> --}}
 
 <div class="row">
     <div class="card" style="width: 100%;">
       <div class="card-body" >
         <div class="col-lg-12">
-          <div class="table-responsive">
+          <div {{-- class="table-responsive" --}}>
                 <table id="allProductsTable" class="table table-hover cards">
                   <thead style="display: none;">
                     <tr>
