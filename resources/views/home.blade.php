@@ -112,6 +112,13 @@
       }
     }
 
+    @media (max-width: 375px) {
+      .searchDiv {
+        width: 40% !important;
+        margin: 0 auto;
+      }
+    }
+
 </style>
 @stop
 
