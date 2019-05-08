@@ -2,6 +2,27 @@
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+<style>
+  .alt-info {
+    display: none;
+  }
+
+  @media (max-width: 440px) {
+    .alt-info {
+      display: block !important;
+      margin-top: 10px;
+    }
+
+    #info {
+      display: none !important;
+    }
+
+    #user-img {
+      margin: 0 auto !important;
+    }
+  }
+</style>
 @stop
 
 @section('content')
@@ -27,12 +48,18 @@
       	<div class="card-body">
         <h4 class="card-title">Account Information</h4>
         <div class="media border p-3">
-		  <img src="{{ Auth::user()->image == '' ? asset('admin/images/faces/default_image.png'):asset('uploads/user/'.Auth::user()->image) }}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:100px;height: 100px;">
-		  <div class="media-body">
-		    <h4 style="margin-top: 20px;" class="text-capitalize display-3">{{ Auth::user()->firstname. ' ' .Auth::user()->middlename. ' ' .Auth::user()->lastname }}</h4>
-		    <p>{{ Auth::user()->email }} {{ Auth::user()->user_type == 2 ? '| '. Auth::user()->user_id : '' }}</p>
-		  </div>
-		</div>
+    		  <img id="user-img" src="{{ Auth::user()->image == '' ? asset('admin/images/faces/default_image.png'):asset('uploads/user/'.Auth::user()->image) }}" class="mr-3 mt-3 rounded-circle" style="width:100px;height: 100px;">
+          
+    		  <div class="media-body" id="info">
+    		    <h4 style="margin-top: 20px;" class="text-capitalize display-3 user-name">{{ Auth::user()->firstname. ' ' .Auth::user()->middlename. ' ' .Auth::user()->lastname }}</h4>
+    		    <p class="user-contact">{{ Auth::user()->email }} {{ Auth::user()->user_type == 2 ? '| '. Auth::user()->user_id : '' }}</p>
+    		  </div>
+		    </div>
+        <div class="alt-info">
+          <h5 class="text-capitalize">{{ Auth::user()->firstname. ' ' .Auth::user()->middlename. ' ' .Auth::user()->lastname }}</h5>
+          <p>{{ Auth::user()->email }} {{ Auth::user()->user_type == 2 ? '| '. Auth::user()->user_id : '' }}</p>
+        </div>
+        
 		<hr>
 		<form class="forms-sample" method="POST" action="{{ route('account-information.update') }}" enctype="multipart/form-data">
 			{{ csrf_field() }}
