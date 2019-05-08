@@ -91,6 +91,55 @@
     color: white;
 }
 
+@media (max-width: 600px) {
+  .profile-text {
+    display: none;
+  }
+}
+
+@media (max-width: 1350px) {
+  #clockdiv > div {
+    padding: 5px;
+    border-radius: 3px;
+    background: #dc6826;
+    /* background: #308ee0; */
+    display: inline-block;
+  }
+}
+
+@media (max-width: 1240px) {
+  #clockdiv > div {
+    padding: 0px;
+    border-radius: 3px;
+    background: #dc6826;
+    /* background: #308ee0; */
+    display: inline-block;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1170px) {
+  #clockdiv div > span {
+    padding: 7px;
+    border-radius: 3px;
+    background: #d74436;
+    /* background: #007bff; */
+    display: inline-block;
+  }
+}
+
+@media (max-width: 875px) {
+  #clockdiv > div {
+    padding: 2px;
+    border-radius: 3px;
+    background: #dc6826;
+    /* background: #308ee0; */
+    display: inline-block;
+    font-size: 20px;
+  }
+}
+
+
   </style>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
@@ -660,7 +709,7 @@
 	    	<div class="card">
 	        	<div class="card-body">
 
-					<div class="row">
+					<div class="row" id="highbidDiv">
 						<div class="col-sm-6">
 							<blockquote class="blockquote blockquote-primary">
 							

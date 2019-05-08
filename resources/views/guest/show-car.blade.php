@@ -3,6 +3,7 @@
 
 <head>
     <!-- Mobile Specific Meta -->
+    {{-- <meta name="viewport" content="width=1280,initial-scale=1"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/fav.png">
@@ -33,6 +34,7 @@
     <link rel="stylesheet" href="{{ asset('karma/css/main.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <style>
+
         .page-link { position: relative; display: block; padding: .5rem .75rem; margin-left: -1px; line-height: 1.25; color: #007bff; background-color: #fff; border: 1px solid #dee2e6; }
         .pagination a {
             width: 40px;
@@ -58,6 +60,20 @@
 
         .table tbody td {
             color: #000000;
+        }
+
+        @media only screen and (max-width: 980px) {
+            .carImg {
+                width: 690px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 770px) {
+            .carImg {
+                width: 515px !important;
+                margin-bottom: 20px !important;
+            }
         }
 
         /* .banner-area {
@@ -243,7 +259,7 @@
 
                         <div class="row single-slide">
                             <div class="col-lg-8">
-                                <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:960px;height:480px;overflow:hidden;visibility:hidden;background-color:#24262e;">
+                                <div id="jssor_1" class="carImg" style="position:relative;margin:0 auto;top:0px;left:0px;width:960px;height:480px;overflow:hidden;visibility:hidden;background-color:#24262e;">
                                     <!-- Loading Screen -->
                                     <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
                                         {{-- <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" /> --}}

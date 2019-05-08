@@ -91,6 +91,27 @@
         border-color: #00ce68;
     }
 
+    @media (max-width: 670px) {
+      .searchDiv {
+        width: 90% !important;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .searchDiv {
+        width: 70% !important;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .searchDiv {
+        width: 50% !important;
+        margin: 0 auto;
+      }
+    }
+
 </style>
 @stop
 
@@ -103,7 +124,7 @@
         <div class="col-lg-12">
             <div class="searchh">
               <p class="search-box-title">Find Vehicles</p>
-              <div class="input-group mb-3">
+              <div class="input-group mb-3 searchDiv">
                 <input type="text" class="form-control" placeholder="Type keyword..." id="searchbox">
                 <div class="input-group-append" style="background: #00ce68; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-color: black;">
                   <span style="color: white;" class="input-group-text"><i class="fas fa-search"></i></span>
