@@ -97,6 +97,17 @@
   }
 }
 
+@media (max-width: 375px) {
+    .navbar.default-layout .navbar-brand-wrapper {
+      width: 75px;
+      display: none !important;
+    } 
+
+    .profile-text {
+      display: none;
+    }
+  }
+
 @media (max-width: 1350px) {
   #clockdiv > div {
     padding: 5px;
