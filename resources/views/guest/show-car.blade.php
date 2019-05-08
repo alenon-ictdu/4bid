@@ -76,6 +76,41 @@
             }
         }
 
+        @media only screen and (max-width: 540px) {
+            .carImg {
+                width: 400px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 420px) {
+            .carImg {
+                width: 350px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 370px) {
+            .carImg {
+                width: 315px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 330px) {
+            .carImg {
+                width: 300px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 315px) {
+            .carImg {
+                width: 290px !important;
+                margin-bottom: 20px !important;
+            }
+        }
+
         /* .banner-area {
             height: 1400px;
             background: url('{{ asset('landing/img/banner/banner-bg.jpg') }}') center no-repeat;
