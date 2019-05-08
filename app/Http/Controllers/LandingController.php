@@ -52,6 +52,8 @@ class LandingController extends Controller
                 'thumbnail' => $thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];
+
+            $highest = 0;
         }
 
         $productArr = json_decode(json_encode($productArr));
