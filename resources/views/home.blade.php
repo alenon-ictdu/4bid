@@ -96,6 +96,11 @@
         width: 90% !important;
         margin: 0 auto;
       }
+
+      .search-box-title {
+          font-size: 20px;
+          font-weight: 700;
+      }
     }
 
     @media (max-width: 600px) {
