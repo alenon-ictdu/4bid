@@ -4,6 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  {{-- <meta name="viewport" content="width=1280,initial-scale=1"> --}}
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>@if(isset($pageTitle)) {{ $pageTitle }} @else Page Title @endif</title>
   <!-- plugins:css -->
