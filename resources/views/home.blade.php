@@ -164,6 +164,10 @@
       }
     }
 
+table.dataTable.no-footer {
+    border-bottom: none !important;;
+}
+
 </style>
 @stop
 
