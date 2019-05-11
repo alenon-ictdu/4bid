@@ -21,7 +21,7 @@
         <div class="card-body">
           <h4 class="card-title">Payments</h4>
                 <div class="table-responsive">
-                  <table id="auctionedTable" class="table table-hover table-striped">
+                  <table id="paymentTable" class="table table-hover table-striped">
                     <thead>
                       <tr>
                         <th></th>
@@ -39,7 +39,15 @@
                         <td>{{ '₱ '.$row->amount }}</td>
                       </tr>
                       @endforeach
-                    </tbody>
+                    </tbody><!-- 
+                    <tfoot>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                    </tfoot> -->
                   </table>
                 </div>
         </div>
@@ -52,7 +60,27 @@
 	
   	<script>
     	$(document).ready( function () {
-        $('#auctionedTable').DataTable({
+        $('#paymentTable').DataTable({/*
+          initComplete: function () {
+                    this.api().columns([0]).every( function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+         
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+         
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    } );
+                }, */
           "pageLength": 25,
           "order": [[ 0, "desc" ]],
           "columnDefs": [

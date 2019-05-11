@@ -63,6 +63,11 @@
 		<hr>
 		<form class="forms-sample" method="POST" action="{{ route('account-information.update') }}" enctype="multipart/form-data">
 			{{ csrf_field() }}
+            @if(Auth::user()->user_type == 2)
+            <div class="form-group">
+              <label>Registration Date: {{ date('M d, Y', strtotime( Auth::user()->created_at )) }}</label>
+            </div>
+            @endif
             <div class="form-group">
               <label>Upload Photo</label>
               <input type="file" name="image" class="form-control-file">

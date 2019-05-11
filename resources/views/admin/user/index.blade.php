@@ -20,9 +20,10 @@
 	                    <th></th>
 	                    <th></th>
 	                    <th>Name</th>
-                      	<th>Email</th>
+                      <th>Email</th>
 	                    <th>Contact</th>
 	                    <th>Address</th>
+                      <th>Registration Date</th>
 	                    <th>Action</th>
                     </tr>
                   </thead>
@@ -37,6 +38,7 @@
                       <td>{{ $row->email }}</td>
                       <td>{{ $row->contact }}</td>
                       <td>{{ $row->address }}</td>
+                      <td>{{ date('M d, Y', strtotime($row->created_at)) }}</td>
                       <td><a class="btn btn-xs btn-warning" href="{{ route('user.show', $row->id) }}" >View</a></td>
                     </tr>
                     @endforeach

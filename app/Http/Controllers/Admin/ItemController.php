@@ -386,7 +386,7 @@ class ItemController extends Controller
         $today = date("Y-m-d");
 
         // get item bidders list
-        $itemBidders = Bid::where('product_id', $product->id)->get();
+        $itemBidders = Bid::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
 
         // print_r($productImages);
         return view('admin.item.show')

@@ -129,6 +129,7 @@ Route::get('notifications', 'NotificationController@index')->name('notification.
 
 // report
 Route::delete('/report/{id}', 'ReportController@store')->name('report.store');
+Route::get('/reports', 'Admin\ReportController@index')->name('report.index');
 
 // view car guest
 Route::get('/item/p/{product_id}', 'GuestController@showCar')->name('show.car');

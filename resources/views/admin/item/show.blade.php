@@ -466,15 +466,19 @@
                   <table id="biddersTable" class="table table-hover table-striped">
                     <thead>
                       <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Bid</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach($itemBidders as $row)
                       <tr>
+                        <td>{{ $row->user->user_id }}</td>
                         <td class="text-capitalize">{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname }}</td>
                         <td>₱ {{ $row->bid }}</td>
+                        <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -524,10 +528,7 @@
         });*/
         $('#biddersTable').DataTable({
           "pageLength": 25,
-          "order": [[ 1, "desc" ]],
-          "columnDefs": [
-           { "type": 'currency', "targets": 1 }
-          ]
+          "order": [[ 0, "desc" ]],
         });
   } );
 

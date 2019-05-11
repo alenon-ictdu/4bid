@@ -376,6 +376,12 @@
               <span class="menu-title">Members/Auctioneers</span>
             </a>
           </li>
+          <li class="nav-item @if(Request::is('admin/report*')) active @endif">
+            <a class="nav-link" href="{{ route('report.index') }}">
+              <i class="menu-icon fa fa-user-lock"></i>
+              <span class="menu-title">Reported User</span>
+            </a>
+          </li>
           @endif
           
         </ul>
