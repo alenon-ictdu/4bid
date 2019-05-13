@@ -49,7 +49,13 @@
 }
 
 .modal-lg {
-  width: 900px;
+  width: 50%;
+}
+
+@media screen and (max-width: 1020px) {
+  .modal-lg {
+   width: 100%;
+  }
 }
 </style>
 @stop
@@ -491,7 +497,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

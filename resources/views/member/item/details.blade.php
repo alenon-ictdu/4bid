@@ -92,7 +92,7 @@
 }
 
 .modal-lg {
-  width: 900px;
+  width: 50%;
 }
 
 @media (max-width: 600px) {
@@ -140,6 +140,12 @@
     background: #d74436;
     /* background: #007bff; */
     display: inline-block;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .modal-lg {
+   width: 100%;
   }
 }
 
@@ -836,30 +842,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table" id="biddersTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Bid</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($productBidders as $row)
-            <tr>
-              <td>{{ $row->user->user_id }}</td>
-              <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
-              <td>{{ $row->bid }}</td>
-              <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table" id="biddersTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Bid</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($productBidders as $row)
+              <tr>
+                <td>{{ $row->user->user_id }}</td>
+                <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
+                <td>{{ $row->bid }}</td>
+                <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

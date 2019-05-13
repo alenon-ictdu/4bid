@@ -366,7 +366,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style="width: 50%; text-transform: capitalize;">Status: <strong>{{ $t >= $product->duration ? 'Not Available':'Available' }}</strong></td>
+                                            <td style="width: 50%; text-transform: capitalize;">Status: <strong> @if($t >= $product->duration) <span class="text-danger">Not Available</span> @else <span class="text-success">Available</span> @endif</strong></td>
                                             <td style="width: 50%; text-transform: capitalize;"></td>
                                         </tr>
                                         <tr>
