@@ -347,11 +347,31 @@
           
           @if(Auth::user()->user_type == 1)
           <li class="nav-item @if(Request::is('admin/payment*')) active @endif">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-elevation-rise"></i>
+              <span class="menu-title">Payments</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse @if(Request::is('admin/payment*')) show @endif" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item @if(Request::is('admin/payments')) active @endif">
+                  <a class="nav-link" href="{{ route('payment.index') }}">Total Income</a>
+                </li>
+                <li class="nav-item @if(Request::is('admin/payment/registration')) active @endif">
+                  <a class="nav-link" href="{{ route('payment.registration') }}">Registration</a>
+                </li>
+                <li class="nav-item @if(Request::is('admin/payment/posting')) active @endif">
+                  <a class="nav-link" href="{{ route('payment.posting') }}">Posting</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          {{-- <li class="nav-item @if(Request::is('admin/payment*')) active @endif">
             <a class="nav-link" href="{{ route('payment.index') }}">
               <i class="menu-icon mdi mdi-elevation-rise"></i>
               <span class="menu-title">Payments</span>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item @if(Request::is('admin/product*')) active @endif">
             <a class="nav-link" href="{{ route('product.index') }}">
               <i class="menu-icon mdi mdi-table"></i>
@@ -370,6 +390,7 @@
               <span class="menu-title">Declined Cars</span>
             </a>
           </li>
+
           <li class="nav-item @if(Request::is('admin/user*')) active @endif">
             <a class="nav-link" href="{{ route('user.index') }}">
               <i class="menu-icon fa fa-users"></i>

@@ -91,6 +91,10 @@
     color: white;
 }
 
+.modal-lg {
+  width: 900px;
+}
+
 @media (max-width: 600px) {
   .profile-text {
     display: none;
@@ -658,6 +662,10 @@
 	    <div class="col-md-3">
 	    	<div class="card">
 	        	<div class="card-body">
+              @if(Auth::user()->id == $product->user_id)
+              <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#biddersModal">View Bidders</button>
+              <hr>
+              @endif
 	        		  <p class="card-description">
 			            Status @if($product->status == 1) <span class="badge badge-success ml-1"> Available </span> @endif @if($product->status == 3) <span class="badge badge-danger ml-1"> Sold </span> @endif</span>
 			          </p>
@@ -815,6 +823,46 @@
 	    </div>
 	 </div>
 
+</div>
+
+<!-- Bidders Modal -->
+<div class="modal fade" id="biddersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bidders</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table" id="biddersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Bid</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($productBidders as $row)
+            <tr>
+              <td>{{ $row->user->user_id }}</td>
+              <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
+              <td>{{ $row->bid }}</td>
+              <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
@@ -1013,6 +1061,11 @@
     $(document).ready(function(){
 	  $('[data-toggle="tooltip"]').tooltip(); 
 	});
+
+    $('#biddersTable').DataTable({
+          "pageLength": 25,
+          "order": [],
+        });
   </script>
   <!-- endinject -->
   <!-- Custom js for this page-->

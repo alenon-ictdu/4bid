@@ -320,8 +320,12 @@ class ItemController extends Controller
             }
         }
 
+        // get bidders
+        $productBidders = Bid::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
+
         return view('member.item.show')
             ->with('reportArr', $reportArr)
+            ->with('productBidders', $productBidders)
             ->with('product', $product)
             ->with('highestBidder', $highestBidder)
             ->with('today', $today)
@@ -564,11 +568,15 @@ class ItemController extends Controller
             }
         }
 
+        // get bidders
+        $productBidders = Bid::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
+
         return view('member.item.details')
             ->with('pageTitle', '4Bid')
             ->with('highestBidder', $highestBidder)
             ->with('inboxNotif', $inboxNotif)
             ->with('reportArr', $reportArr)
+            ->with('productBidders', $productBidders)
             ->with('product', $product)
             ->with('productDOD', $productDOD)
             ->with('chatniAdmin', $chatniAdmin)

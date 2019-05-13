@@ -119,6 +119,8 @@ Route::delete('/inbox/update/{id}', 'InboxController@update')->name('inbox.updat
 
 // payment log routes
 Route::get('/admin/payments', 'Admin\PaymentController@index')->name('payment.index');
+Route::get('/admin/payment/registration', 'Admin\PaymentController@registration')->name('payment.registration');
+Route::get('/admin/payment/posting', 'Admin\PaymentController@posting')->name('payment.posting');
 
 Route::get('tester', 'BidController@tester');
 

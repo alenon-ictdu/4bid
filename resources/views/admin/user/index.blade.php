@@ -34,7 +34,7 @@
                       <td>@foreach($onlineUsers as $ou) @if($row->id == $ou->id) Online @endif @endforeach</td>
                       <td>@foreach($onlineUsers as $ou) @if($row->id == $ou->id) <i class="fa fa-circle text-success"></i> @endif @endforeach</td>
                       <td><img src="{{ $row->image == '' ? asset('admin/images/faces/default_image.png'):asset('uploads/user/'.$row->image) }}"></td>
-                      <td class="text-capitalize">{{ $row->firstname. ' ' .$row->middlename. ' ' .$row->lastname }}</td>
+                      <td class="text-capitalize">{{ $row->firstname. ' ' .$row->middlename. ' ' .$row->lastname . ' | ' .$row->user_id }}</td>
                       <td>{{ $row->email }}</td>
                       <td>{{ $row->contact }}</td>
                       <td>{{ $row->address }}</td>
