@@ -11,7 +11,7 @@
   <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Payments</h4>
+          <h4 class="card-title">Reported Users</h4>
                 <div class="table-responsive">
                   <table id="auctionedTable" class="table table-hover table-striped">
                     <thead>
