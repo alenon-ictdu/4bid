@@ -72,7 +72,11 @@ Route::post('/item/edit/{product_id}/{id}', 'ItemController@update')->name('item
 Route::get('/item_details/{product_id}', 'ItemController@details')->name('item.details');
 Route::delete('/item/{id}/delete', 'ItemController@destroy')->name('item.destroy');
 
+// load bid
+Route::get('/item/{id}/bid', 'ItemController@loadBid');
 
+// storebid
+Route::post('/item/{id}/bid/store', 'ItemController@storeBid')->name('store.bid');
 
 
 // admin item routes

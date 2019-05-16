@@ -229,7 +229,7 @@ table.dataTable.no-footer {
                       <td>Floor Price: ₱ {{ $row->price }}</td>
                       <td>Highest Bid: {{ $row->h_bid != 'none' ? '₱ '.$row->h_bid:'' }}</td>
                       <td>Date Posted: {{ date('M d, Y', strtotime($row->created_at)) }}</td>
-                      <td>Not Available</td>
+                      <td class="text-danger">Not Available</td>
                     </tr>
                     @else
                     <tr>

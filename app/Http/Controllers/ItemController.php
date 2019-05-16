@@ -596,4 +596,50 @@ class ItemController extends Controller
         return redirect()->route('item.index');
     }
 
+    public function loadBid($id) {
+        // get the highest bid
+        $bid = Bid::where('product_id', $id)->get();
+        // echo $bid->max('bid');
+        $max = Bid::where([['product_id', $id], ['bid', $bid->max('bid')]])->orderBy('id', 'asc')->get();
+
+        // print_r($max);
+        if($max->count() > 0) {
+            foreach ($max as $row) {
+                $highestBidder = $row;
+                break;
+            }
+        } else {
+            $highestBidder = 'None';
+        }
+
+        // -------------------------
+
+        if ($highestBidder == 'None') {
+            echo $highestBidder;
+        } else {
+            if (Auth::user()->id == $highestBidder->user_id) {
+                echo $highestBidder->bid. "<small> (You) </small>";
+            } else {
+                echo $highestBidder->bid; 
+            }
+        }    
+    }
+
+    public function storeBid(Request $request, $id) {
+
+        if($request->ajax()) {
+            $this->validate($request, [
+                'bid' => 'required|numeric'
+            ]);
+
+            $bid = New Bid;
+            $bid->bid = $request->bid;
+            $bid->user_id = Auth::user()->id;
+            $bid->product_id = $id;
+            $bid->save();
+
+            return response($bid);
+        }
+    }
+
 }

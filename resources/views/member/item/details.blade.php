@@ -673,7 +673,17 @@
               <hr>
               @endif
 	        		  <p class="card-description">
-			            Status @if($product->status == 1) <span class="badge badge-success ml-1"> Available </span> @endif @if($product->status == 3) <span class="badge badge-danger ml-1"> Sold </span> @endif</span>
+			            Status 
+                  @if($pToday >= $product->duration) 
+                    <span class="badge badge-dark ml-1">Not Available</span> 
+                  @else 
+                    @if($product->status == 1) 
+                      <span class="badge badge-success ml-1"> Available </span> 
+                    @endif 
+                    @if($product->status == 3) 
+                      <span class="badge badge-danger ml-1"> Sold </span> 
+                    @endif
+                  @endif  
 			          </p>
 			          <p>
 			            Car Model
@@ -741,15 +751,15 @@
 								<div class="row" style="color: white;">
 									<div class="col-sm-6">
 										<p>Highest Bid</p>
-										<h5>
-											@if($highestBidder != 'None') 
+										<h5 id="testBid">
+											{{-- @if($highestBidder != 'None') 
 												{{ '₱ '.$highestBidder->bid }} 
 												@if($highestBidder->user_id == Auth::user()->id)
 													<small>(you)</small>
 												@endif 
 											@else 
 												None 
-											@endif
+											@endif --}}
 										</h5>
 									</div>
 									<div class="col-sm-6">
@@ -798,7 +808,7 @@
 						@if($product->user_id == Auth::user()->id)
 							<div class="col-md-12"><label>You can't bid on your own car</label></div>
 						@else
-						<form method="POST" action="{{ route('bid.store', $product->id) }}" id="bidForm" {{-- onsubmit="return Confirm()" --}}>
+						<form method="POST" action="{{ route('store.bid', $product->id) }}" id="bidForm" {{-- onsubmit="return Confirm()" --}}>
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-md-12"><label>Enter your bid here</label></div>
@@ -901,6 +911,18 @@
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/currency.js"></script>
   <script>
+  {{-- load bid --}}
+    $(document).ready(function(e){
+        $.ajaxSetup({
+            cache: false
+        });
+        setInterval( function(){ 
+          $('#testBid').load('/item/'+'{{ $product->id }}'+'/bid'); 
+          /*var elem = document.getElementById('chatDiv');
+          elem.scrollTop = elem.scrollHeight;*/
+        }, 1000 );
+    });
+
     /*view notif*/
   $(document).on('click', '#viewNotif', function(e) {
     var id = $(this).data('id');
@@ -1027,7 +1049,7 @@
 	@endif
 
 	$('#bidForm').submit(function(e) {
-		e. preventDefault(); 
+		e.preventDefault(); 
 		var min = {{ $product->price }};
 		var bid = $('#bidInput').val();
 
@@ -1043,11 +1065,34 @@
 			alert('Bid must be greater than '+ min)
 		} else {
 			var x = confirm("Confirm bid");
-		    if (x)
-		    	document.forms["bidForm"].submit();
-		      // return true;
-		    else
+		    if (x) {
+            var data = $(this).serialize();
+            var url = $(this).attr('action');
+
+            console.log(data);
+            $.post(url, data, function(data) {
+
+                alert('Your bid has been submit!');
+                $('#bidInput').val('');
+
+            });
+        }
+		    	// document.forms["bidForm"].submit();
+		      /*$('#bidForm').on('submit', function(e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            var url = $(this).attr('action');
+
+            console.log(data);
+            $.post(url, data, function(data) {
+
+                alert('Your bid has been submit!');
+
+            });
+          });*/
+		    else {
 		     	return false;
+        }
 		}
 	});
 
