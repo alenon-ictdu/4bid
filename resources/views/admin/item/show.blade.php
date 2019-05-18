@@ -474,7 +474,7 @@
                     </thead>
                     <tbody>
                       @foreach($itemBidders as $row)
-                      <tr>
+                      <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
                         <td>{{ $row->user->user_id }}</td>
                         <td class="text-capitalize">{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname }}</td>
                         <td>₱ {{ $row->bid }}</td>

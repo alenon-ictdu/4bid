@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/vendors/css/vendor.bundle.addons.css') }}">
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -864,7 +865,7 @@
             </thead>
             <tbody>
               @foreach($productBidders as $row)
-              <tr>
+              <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
                 <td>{{ $row->user->user_id }}</td>
                 <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
                 <td>{{ $row->bid }}</td>
@@ -910,6 +911,7 @@
   {{-- <script src="{{ asset('admin/js/misc.js') }}"></script> --}}
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/currency.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script>
   {{-- load bid --}}
     $(document).ready(function(e){
@@ -1072,8 +1074,12 @@
             console.log(data);
             $.post(url, data, function(data) {
 
-                alert('Your bid has been submit!');
-                $('#bidInput').val('');
+                // alert('Your bid has been submit!');
+              $('#bidInput').val('');
+              toastr.options.closeButton = true
+              toastr.options.timeOut = 3000;
+              toastr.options.positionClass = 'toast-top-center';
+              toastr.success('Your bid has been submit!');
 
             });
         }

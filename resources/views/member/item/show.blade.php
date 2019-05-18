@@ -363,6 +363,7 @@
             {{-- <i class="mdi mdi-earth icon-md text-info d-flex align-self-end mr-3"></i> --}}
             <div class="media-body">
               <p class="card-text text-capitalize">{{ $highestBidder != 'None' ? $highestBidder->user->firstname.' '.$highestBidder->user->middlename.' '.$highestBidder->user->lastname:'' }} <small><i>{{ $highestBidder != 'None' ? date('M d, Y h:i:s A', strtotime($highestBidder->created_at)):'' }}</i></small></p>
+              @if($highestBidder != 'None')<p>{{ $highestBidder->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}</p>@endif
               <p class="card-text">Bid <span class="font-weight-bold">{{ $highestBidder != 'None' ? '₱ '.$highestBidder->bid:'' }}</span></p>
               @if($today >= $product->duration) 
                 <p class="card-text"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#messageModal">Compose Message</a> 
@@ -485,7 +486,7 @@
           </thead>
           <tbody>
             @foreach($productBidders as $row)
-            <tr>
+            <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
               <td>{{ $row->user->user_id }}</td>
               <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
               <td>{{ $row->bid }}</td>
