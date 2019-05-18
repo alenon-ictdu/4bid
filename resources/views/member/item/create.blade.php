@@ -79,6 +79,7 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
+              <h5>Please based it on your OR/CR</h5>
               	<div class="form-group">
                   <label for="exampleInputName1">Car ID<span class="required-field">*</span></label>
                   <input type="text" class="form-control" value="{{ $productID }}" disabled required>
@@ -101,7 +102,7 @@
                   <input name="style" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Brand<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Brand ( e.g toyato, audi) <span class="required-field">*</span></label>
                   <input name="brand" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
@@ -119,6 +120,7 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
+              <br>
                 <div class="form-group">
                   <label for="exampleInputName1">Piston Displacement<span class="required-field">*</span></label>
                   <input name="piston" type="text" class="form-control" required>

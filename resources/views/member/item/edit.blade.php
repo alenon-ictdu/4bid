@@ -34,6 +34,7 @@
 	  </button>
 	</div>
 	@endif
+
 	<h4 style="margin-top: 10px; margin-bottom: 20px;">Edit car details</h4>
 	<div class="row" style="background-color: white;">
 		

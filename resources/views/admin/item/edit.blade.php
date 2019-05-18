@@ -14,6 +14,7 @@
 @stop
 
 @section('content')
+<a href="{{ route('pending.product.index') }}" class="btn btn-primary">Back</a>
 <form name="updateForm" id="updateForm" action="{{ route('product.update', [$product->product_id, $product->id]) }}" method="POST" enctype="multipart/form-data">
 <div class="col-md-8 offset-md-2">
 	@if(count($errors) > 0)
