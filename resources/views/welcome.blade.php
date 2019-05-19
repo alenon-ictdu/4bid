@@ -49,6 +49,19 @@
             background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
             border-color: white;
         }
+
+        #imageDiv {
+           width: 100%;
+           height: 170px;
+           background-color: red;
+           margin-bottom: 10px;
+        }
+
+        #imageDiv img {
+           max-width: 100%;
+           max-height: 100%;
+           object-fit: cover;
+        }
     </style>
 </head>
 
@@ -199,11 +212,14 @@
                     <!-- single product -->
                     <div class="col-lg-3 col-md-6">
                         <div class="single-product">
-                            <img class="img-fluid" src="{{ asset('uploads/images/'. $row->thumbnail) }}" alt="">
+                            <div id="imageDiv" {{-- style="width: 100%;height: 180px; background-color: red;" --}}>
+                               <img class="" src="{{ asset('uploads/images/'. $row->thumbnail) }}" alt=""> 
+                            </div>
+                            
                             <div class="product-details">
                                 <h6>{{ $row->name. ' ' .$row->brand. ' ' .$row->color }}</h6>
                                 <div class="price">
-                                    <h6>₱ {{ $row->price }}</h6>
+                                    <h6>₱ {{ number_format($row->price) }}</h6>
                                     <h6 class="text-muted">Floor Price</h6>
                                 </div>
                                 <div class="prd-bottom">
@@ -339,6 +355,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="{{ asset('karma/js/gmaps.min.js') }}"></script>
     <script src="{{ asset('karma/js/main.js') }}"></script>
+    <!-- <script>
+        (function() {
+    
+        var img = document.getElementById('imageDiv').firstChild;
+        img.onload = function() {
+            if(img.height > img.width) {
+                img.height = '100%';
+                img.width = 'auto';
+            }
+        };
+    
+        }());
+    </script> -->
 </body>
 
 </html>
