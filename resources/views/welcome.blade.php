@@ -53,7 +53,7 @@
         #imageDiv {
            width: 100%;
            height: 170px;
-           background-color: red;
+           background-color: #222222;
            margin-bottom: 10px;
         }
 
