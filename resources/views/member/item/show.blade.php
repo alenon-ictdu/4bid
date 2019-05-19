@@ -61,6 +61,7 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 <!-- #region Jssor Slider Begin -->
     <!-- Generator: Jssor Slider Maker -->
     <!-- Source: https://www.jssor.com -->
@@ -364,11 +365,12 @@
             <div class="media-body">
               <p class="card-text text-capitalize">{{ $highestBidder != 'None' ? $highestBidder->user->firstname.' '.$highestBidder->user->middlename.' '.$highestBidder->user->lastname:'' }} <small><i>{{ $highestBidder != 'None' ? date('M d, Y h:i:s A', strtotime($highestBidder->created_at)):'' }}</i></small></p>
               @if($highestBidder != 'None')<p>{{ $highestBidder->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}</p>@endif
-              <p class="card-text">Bid <span class="font-weight-bold">{{ $highestBidder != 'None' ? '₱ '.$highestBidder->bid:'' }}</span></p>
+              <p class="card-text">Bid <span class="font-weight-bold">{{ $highestBidder != 'None' ? '₱ '.number_format($highestBidder->bid):'' }}</span></p>
               @if($today >= $product->duration) 
                 <p class="card-text"><a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#messageModal">Compose Message</a> 
                   @if(!in_array($highestBidder->user_id, $reportArr))
-                    <a data-id="{{ $highestBidder->user_id }}" id="reportUser" data-token="{{ csrf_token() }}" href="#" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Report"><i class="fas fa-flag"></i></a> 
+                    {{-- <a data-id="{{ $highestBidder->user_id }}" id="reportUser" data-token="{{ csrf_token() }}" href="#" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Report"><i class="fas fa-flag"></i></a>  --}}
+                    <button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#reportModal" ><i class="fas fa-flag"></i></button>
                   @endif
                 </p> 
               @else 
@@ -430,7 +432,7 @@
                 </tr>
                 <tr>
                   <td style="width: 50%;">Car Model: <strong class="text-capitalize">{{ $product->name }}</strong></td>
-                  <td style="width: 50%;">Floor Price: <strong class="text-capitalize">{{ $product->price }}</strong></td>
+                  <td style="width: 50%;">Floor Price: <strong class="text-capitalize">{{ '₱ '. number_format($product->price) }}</strong></td>
                 </tr>
                 <tr>
                   <td style="width: 50%;">Brand: <strong class="text-capitalize">{{ $product->brand }}</strong></td>
@@ -464,6 +466,61 @@
     </div>
 </div>
 
+@if($highestBidder != 'None' && !in_array($highestBidder->user_id, $reportArr))
+<!-- Report Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Report User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @if(count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error(s):</strong> 
+             <ul>
+                @foreach($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+             </ul>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endif
+        <form method="POST" action="{{ route('report.store') }}" id="reportForm">
+          {{ csrf_field() }}
+          {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+          {{-- <input type="hidden" name="reported" class="form-control" id="recipient-name"> --}}
+          <input type="hidden" name="reported" class="form-control" value="{{ $highestBidder->user_id }}">
+          <div class="form-group">
+            <label>Select offense</label>
+            <select class="form-control" name="offense" required>
+              <option value="none"></option>
+              <option value="Report as Fraud">Report as Fraud</option>
+              <option value="Report as Scam">Report as Scam</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Please specify in the description</label>
+            <textarea rows="7" class="form-control" name="description" required></textarea>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="reportForm">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
 <!-- Bidders Modal -->
 <div class="modal fade" id="biddersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -489,7 +546,7 @@
             <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
               <td>{{ $row->user->user_id }}</td>
               <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
-              <td>{{ $row->bid }}</td>
+              <td>{{ '₱ '. number_format($row->bid) }}</td>
               <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
             </tr>
             @endforeach
@@ -604,14 +661,28 @@ deadline.setHours(deadline.getHours() - 12);
   initializeClock('clockdiv', deadline);
 @endif
 
+@if(count($errors) > 0)
+  $('#reportModal').modal('show');
+@endif
+
 
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
   });
 
+/*$('#reportModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  // modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})*/
+
 // report user
-    $(document).on('click', '#reportUser', function(e) {
+    /*$(document).on('click', '#reportUser', function(e) {
       var id = $(this).data('id');
       var token = $(this).data("token");
       var x = confirm("Are you sure you want to report the owner of this user?");
@@ -633,7 +704,7 @@ $(document).ready(function(){
             });
         else
           return false;
-    });
+    });*/
     // report user
 
     $('#biddersTable').DataTable({

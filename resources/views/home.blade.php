@@ -232,24 +232,26 @@ table.dataTable.no-footer {
                       <td class="text-danger">Not Available</td>
                     </tr> --}}
                     @else
-                    <tr>
-                      <td><img style="width: 100%; height: 100%; border-radius: 0%;" src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
-                      <td><a href="{{ route('item.details', $row->id) }}" class="font-weight-bold">{{ $row->name }}</a>  @if($row->user_id == Auth::user()->id) <span class="badge badge-primary ml-1"> Your Item </span> @endif</td>
-                      <td>
-                        Description: 
-                        <ul class="list-arrow">
-                          <li>{{ $row->name }}</li>
-                          <li>{{ $row->brand }}</li>
-                          <li>{{ $row->color }}</li>
-                          <li>{{ $row->series }}</li>
-                          <li>{{ $row->year }}</li>
-                        </ul>
-                      </td>
-                      <td>Floor Price: ₱ {{ $row->price }}</td>
-                      <td>Highest Bid: {{ $row->h_bid != 'none' ? '₱ '.$row->h_bid:'' }}</td>
-                      <td>Date Posted: {{ date('M d, Y', strtotime($row->created_at)) }}</td>
-                      <td>Due Date: {{ date('M d, Y', strtotime($row->duration)) }}</td>
-                    </tr>
+                      @if(!in_array($row->id, $reportArr))
+                      <tr>
+                        <td><img style="width: 100%; height: 100%; border-radius: 0%;" src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
+                        <td><a href="{{ route('item.details', $row->id) }}" class="font-weight-bold">{{ $row->name }}</a>  @if($row->user_id == Auth::user()->id) <span class="badge badge-primary ml-1"> Your Item </span> @endif</td>
+                        <td>
+                          Description: 
+                          <ul class="list-arrow">
+                            <li>{{ $row->name }}</li>
+                            <li>{{ $row->brand }}</li>
+                            <li>{{ $row->color }}</li>
+                            <li>{{ $row->series }}</li>
+                            <li>{{ $row->year }}</li>
+                          </ul>
+                        </td>
+                        <td>Floor Price: ₱ {{ number_format($row->price) }}</td>
+                        <td>Highest Bid: {{ $row->h_bid != 'none' ? '₱ '.number_format($row->h_bid):'' }}</td>
+                        <td>Date Posted: {{ date('M d, Y', strtotime($row->created_at)) }}</td>
+                        <td>Due Date: {{ date('M d, Y', strtotime($row->duration)) }}</td>
+                      </tr>
+                      @endif
                     @endif
                     @endforeach
                   </tbody>

@@ -60,6 +60,7 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 <!-- #region Jssor Slider Begin -->
     <!-- Generator: Jssor Slider Maker -->
     <!-- Source: https://www.jssor.com -->
@@ -414,7 +415,7 @@
               </tr>
               <tr>
                 <td style="width: 50%;"><small>Car Model: </small><strong class="text-capitalize">{{ $product->name }}</strong></td>
-                <td style="width: 50%;"><small>Floor Price: </small><strong class="text-capitalize">{{ $product->price }}</strong></td>
+                <td style="width: 50%;"><small>Floor Price: </small><strong class="text-capitalize">{{ '₱ '.number_format($product->price) }}</strong></td>
               </tr>
               <tr>
                 <td style="width: 50%;"><small>Brand: </small><strong class="text-capitalize">{{ $product->brand }}</strong></td>
@@ -477,7 +478,7 @@
                       <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
                         <td>{{ $row->user->user_id }}</td>
                         <td class="text-capitalize">{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname }}</td>
-                        <td>₱ {{ $row->bid }}</td>
+                        <td>₱ {{ number_format($row->bid) }}</td>
                         <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
                       </tr>
                       @endforeach

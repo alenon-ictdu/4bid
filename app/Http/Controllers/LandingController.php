@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductImage;
 use Carbon\Carbon;
 use DateTime;
+use App\Report;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -30,6 +31,8 @@ class LandingController extends Controller
             }
             $thumbnail = ProductImage::find($highest);
 
+            // echo "$highest <br>";
+
             $productArr[$x++] = [
                 'id' => $row->id,
                 'product_id' => $row->product_id,
@@ -49,7 +52,7 @@ class LandingController extends Controller
                 'duration' => date('M d, Y', strtotime($row->duration)),
                 'duration2' => $row->duration,
                 'status' => $row->status,
-                'thumbnail' => $thumbnail->image,
+                'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];
 
@@ -78,8 +81,20 @@ class LandingController extends Controller
 
         $lToday = date("Y-m-d");
 
+
+        // get reported
+        $reports = Report::all();
+        $reportArr = [];
+        foreach ($reports as $row) {
+            if (!in_array($row->reported, $reportArr)) {
+                array_push($reportArr, $row->reported);
+            }
+        }
+
+
         return view('welcome')
             ->with('lToday', $lToday)
+            ->with('reportArr', $reportArr)
             ->with('products', $paginatedItems);
     }
     public function oldlandingPage() {
@@ -462,7 +477,7 @@ class LandingController extends Controller
                 'duration' => date('M d, Y', strtotime($row->duration)),
                 'duration2' => $row->duration,
                 'status' => $row->status,
-                'thumbnail' => $thumbnail->image,
+                'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];
         }

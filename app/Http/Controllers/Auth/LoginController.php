@@ -35,7 +35,7 @@ class LoginController extends Controller
             if ($validCredentials) {
                 $report = Report::where('reported', $user->id)->get();
 
-                if($report->count() > 5) {
+                if($report->count() >= 1) {
                     Session::flash('reported', 'Your account has been blocked');
                     return redirect()->back();
                 }

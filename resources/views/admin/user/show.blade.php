@@ -64,6 +64,7 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 <div class="row">
 	<div class="col-md-6 grid-margin stretch-card">
       <div class="card">

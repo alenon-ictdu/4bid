@@ -134,7 +134,8 @@ Route::delete('/notification2/update/{id}', 'NotificationController@update2')->n
 Route::get('notifications', 'NotificationController@index')->name('notification.index');
 
 // report
-Route::delete('/report/{id}', 'ReportController@store')->name('report.store');
+// Route::delete('/report/{id}', 'ReportController@store')->name('report.store');
+Route::post('/report/store', 'ReportController@store')->name('report.store');
 Route::get('/reports', 'Admin\ReportController@index')->name('report.index');
 
 // view car guest

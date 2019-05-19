@@ -26,7 +26,7 @@
 @stop
 
 @section('content')
-
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 @if(count($errors) > 0)
 <div class="col-md-6 offset-md-3">
 	<div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -5,44 +5,46 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 
-<div class="col-md-12 grid-margin stretch-card">
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
-      	<div class="card-body">
-      		<h5>Your Notifications</h5>
-    			<div class="table-responsive">
-    				<table class="table table-hover" id="notifTable">
-    					<thead>
-    						<tr>
-    							<th></th>
-    							<th></th>
-    							<th></th>
-    						</tr>
-    					</thead>
-    					<tbody>
-    						@foreach($uNotification as $row)
-                <tr @if($row->status == 0) class="table-dark text-dark" @endif>
-                  <td>{{ $row->id }}</td>
-                  <th>{{ $row->description }}</th>
-                  <td><a data-id="{{ $row->id }}" id="vNotif" data-token="{{ csrf_token() }}"  href="#" class="btn btn-xs btn-primary">View</a></td>
-                </tr>
-                @endforeach
-                @foreach($finishedCar as $row)
-                @if($row->duration <= $t)
-                <tr @if($row->status2 == 0) class="table-dark text-dark" @endif>
-                  <td>{{ $row->id }}</td>
-                  <th>Your <span class="text-capitalize">{{ $row->brand. ' ' .$row->name. ' ' .$row->color }}</span> is finished! </th>
-                  <td><a href="{{ route('item.show', $row->product_id) }}" class="btn btn-xs btn-primary">View</a></td>
-                </tr>
-                @endif
-                @endforeach
-    					</tbody>
-    				</table>
-       		</div>
-		</div>
-	</div>
+    	<div class="card-body">
+    		<h5>Your Notifications</h5>
+  			<div class="table-responsive">
+  				<table class="table table-hover" id="notifTable">
+  					<thead>
+  						<tr>
+  							<th></th>
+  							<th></th>
+  							<th></th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						@foreach($uNotification as $row)
+              <tr @if($row->status == 0) class="table-dark text-dark" @endif>
+                <td>{{ $row->id }}</td>
+                <th>{{ $row->description }}</th>
+                <td><a data-id="{{ $row->id }}" id="vNotif" data-token="{{ csrf_token() }}"  href="#" class="btn btn-xs btn-primary">View</a></td>
+              </tr>
+              @endforeach
+              @foreach($finishedCar as $row)
+              @if($row->duration <= $t)
+              <tr @if($row->status2 == 0) class="table-dark text-dark" @endif>
+                <td>{{ $row->id }}</td>
+                <th>Your <span class="text-capitalize">{{ $row->brand. ' ' .$row->name. ' ' .$row->color }}</span> is finished! </th>
+                <td><a href="{{ route('item.show', $row->product_id) }}" class="btn btn-xs btn-primary">View</a></td>
+              </tr>
+              @endif
+              @endforeach
+  					</tbody>
+  				</table>
+     		</div>
+		  </div>
+    </div>
+  </div>
 </div>
-
 {{-- winnernotif modal --}}
   @foreach($uNotification as $row)
   <div class="modal fade" id="wNotifModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

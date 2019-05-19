@@ -17,6 +17,8 @@ class CreateReportTable extends Migration
             $table->increments('id');
             $table->integer('reporter');
             $table->integer('reported');
+            $table->string('reason');
+            $table->text('description');
             $table->timestamps();
         });
     }

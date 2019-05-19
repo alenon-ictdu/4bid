@@ -7,12 +7,13 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 <div class="row">
   <div class="col-md-3 grid-margin">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Total</h4>
-          <h1>₱ {{ $money }}</h1>
+          <h1>₱ {{ number_format($money) }}</h1>
         </div>
       </div>
   </div>
@@ -36,7 +37,7 @@
                         <td>{{ $row->id }}</td>
                         <td>{{ $row->created_at->toDayDateTimeString() }}</td>
                         <td><h5 style="color: #0070ba;">{{ $row->description }}</h5><small>{{ $row->action }}</small></td>
-                        <td>{{ '₱ '.$row->amount }}</td>
+                        <td>{{ '₱ '.number_format($row->amount) }}</td>
                       </tr>
                       @endforeach
                     </tbody><!-- 

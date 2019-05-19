@@ -65,7 +65,7 @@ class ItemController extends Controller
                         'duration' => date('M d, Y', strtotime($row->duration)),
                         'duration2' => $row->duration,
                         'status' => $row->status,
-                        'thumbnail' => $thumbnail->image,
+                        'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                         'created_at' => date('M d, Y', strtotime($row->created_at)),
                         'h_bidder_id' => $d->user_id,
                         'h_bidder' => $d->user->firstname. ' ' .$d->user->middlename. ' ' .$d->user->lastname,
@@ -93,7 +93,7 @@ class ItemController extends Controller
                     'duration' => date('M d, Y', strtotime($row->duration)),
                     'duration2' => $row->duration,
                     'status' => $row->status,
-                    'thumbnail' => $thumbnail->image,
+                    'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                     'created_at' => date('M d, Y', strtotime($row->created_at)),
                     'h_bidder_id' => 'none',
                     'h_bidder' => 'none',
@@ -312,13 +312,20 @@ class ItemController extends Controller
         $inboxNotif = Inbox::where([['status', 0], ['user_id', Auth::user()->id]])->get();
 
         // get reported
-        $reports = Report::where('reporter', Auth::user()->id)->get();
+        $reports = Report::all();
         $reportArr = [];
         foreach ($reports as $row) {
             if (!in_array($row->reported, $reportArr)) {
                 array_push($reportArr, $row->reported);
             }
         }
+        /*$reports = Report::where('reporter', Auth::user()->id)->get();
+        $reportArr = [];
+        foreach ($reports as $row) {
+            if (!in_array($row->reported, $reportArr)) {
+                array_push($reportArr, $row->reported);
+            }
+        }*/
 
         // get bidders
         $productBidders = Bid::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
@@ -560,13 +567,20 @@ class ItemController extends Controller
         $inboxNotif = Inbox::where([['status', 0], ['user_id', Auth::user()->id]])->get();
 
         // get reported
-        $reports = Report::where('reporter', Auth::user()->id)->get();
+        $reports = Report::all();
         $reportArr = [];
         foreach ($reports as $row) {
             if (!in_array($row->reported, $reportArr)) {
                 array_push($reportArr, $row->reported);
             }
         }
+        /*$reports = Report::where('reporter', Auth::user()->id)->get();
+        $reportArr = [];
+        foreach ($reports as $row) {
+            if (!in_array($row->reported, $reportArr)) {
+                array_push($reportArr, $row->reported);
+            }
+        }*/
 
         // get bidders
         $productBidders = Bid::where('product_id', $product->id)->orderBy('created_at', 'desc')->get();
@@ -618,9 +632,9 @@ class ItemController extends Controller
             echo $highestBidder;
         } else {
             if (Auth::user()->id == $highestBidder->user_id) {
-                echo $highestBidder->bid. "<small> (You) </small>";
+                echo '₱ '.number_format($highestBidder->bid). "<small> (You) </small>";
             } else {
-                echo $highestBidder->bid; 
+                echo '₱ '.number_format($highestBidder->bid); 
             }
         }    
     }

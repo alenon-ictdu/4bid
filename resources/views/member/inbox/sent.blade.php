@@ -5,8 +5,9 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 
-
+<div class="row">
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       	<div class="card-body">
@@ -39,6 +40,7 @@
        		</div>
 		</div>
 	</div>
+</div>
 </div>
 
 {{-- inbox modal	 --}}

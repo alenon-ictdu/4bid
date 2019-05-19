@@ -10,6 +10,7 @@ use App\Product;
 use App\ProductImage;
 use App\AdminUserChat;
 use App\Inbox;
+use App\Report;
 
 class HomeController extends Controller
 {
@@ -103,7 +104,7 @@ class HomeController extends Controller
                         'duration' => date('M d, Y', strtotime($row->duration)),
                         'duration2' => $row->duration,
                         'status' => $row->status,
-                        'thumbnail' => $thumbnail->image,
+                        'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                         'created_at' => date('M d, Y', strtotime($row->created_at)),
                         'h_bidder_id' => $d->user_id,
                         'h_bidder' => $d->user->firstname. ' ' .$d->user->middlename. ' ' .$d->user->lastname,
@@ -131,7 +132,7 @@ class HomeController extends Controller
                     'duration' => date('M d, Y', strtotime($row->duration)),
                     'duration2' => $row->duration,
                     'status' => $row->status,
-                    'thumbnail' => $thumbnail->image,
+                    'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                     'created_at' => date('M d, Y', strtotime($row->created_at)),
                     'h_bidder_id' => 'none',
                     'h_bidder' => 'none',
@@ -211,7 +212,7 @@ class HomeController extends Controller
                         'duration' => date('M d, Y', strtotime($row->duration)),
                         'duration2' => $row->duration,
                         'status' => $row->status,
-                        'thumbnail' => $thumbnail->image,
+                        'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                         'created_at' => date('M d, Y', strtotime($row->created_at)),
                         'h_bidder_id' => $d->user_id,
                         'h_bidder' => $d->user->firstname. ' ' .$d->user->middlename. ' ' .$d->user->lastname,
@@ -239,7 +240,7 @@ class HomeController extends Controller
                     'duration' => date('M d, Y', strtotime($row->duration)),
                     'duration2' => $row->duration,
                     'status' => $row->status,
-                    'thumbnail' => $thumbnail->image,
+                    'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                     'created_at' => date('M d, Y', strtotime($row->created_at)),
                     'h_bidder_id' => 'none',
                     'h_bidder' => 'none',
@@ -262,9 +263,19 @@ class HomeController extends Controller
         // get inbox notif
         $inboxNotif = Inbox::where([['status', 0], ['user_id', Auth::user()->id]])->get();
 
+        // get reported
+        $reports = Report::all();
+        $reportArr = [];
+        foreach ($reports as $row) {
+            if (!in_array($row->reported, $reportArr)) {
+                array_push($reportArr, $row->reported);
+            }
+        }
+
         return view('home')
             ->with('pageTitle', 'Home')
             ->with('inboxNotif', $inboxNotif)
+            ->with('reportArr', $reportArr)
             ->with('today', $today)
             ->with('newlyAddedProducts', $products)
             ->with('chatniAdmin', $chatniAdmin)

@@ -6,7 +6,9 @@
 @stop
 
 @section('content')
-<div class="col-md-12 grid-margin stretch-card">
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
   	<div class="card">
     	<div class="card-body">
     		<h4 class="card-title">Auctioned Items</h4>
@@ -31,8 +33,8 @@
                       <td>{{ $row->id }}</td>
                       <td><img src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
                       <td>{{ $row->brand. ' ' .$row->name. ' ' .$row->color. ' ' .$row->style. ' ' .$row->series }}</td>
-                      <td>₱ {{ $row->price }}</td>
-                      <td>{{ $row->h_bid != 'none' ? '₱ '.$row->h_bid:'' }}</td>
+                      <td>₱ {{ number_format($row->price) }}</td>
+                      <td>{{ $row->h_bid != 'none' ? '₱ '.number_format($row->h_bid):'' }}</td>
                       <td class="text-capitalize">{{ $row->h_bidder != 'none' ? $row->h_bidder:'' }}</td>
                       <td>{{ $row->duration }}</td>
                       <td>
@@ -64,8 +66,11 @@
               </div>
     	</div>
     </div>
+  </div>
 </div>
-<div class="col-md-12 grid-margin stretch-card">
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
   	<div class="card">
     	<div class="card-body">
     		<h4 class="card-title">My Bidded Items</h4>
@@ -84,7 +89,7 @@
                     <tr>
                       <td>{{ $row->id }}</td>
                     	<td>{{ $row->product->brand. ' ' .$row->product->name. ' ' .$row->product->color. ' ' .$row->product->style. ' ' .$row->product->series }}</td>
-                    	<td>₱ {{ $row->bid }}</td>
+                    	<td>₱ {{ number_format($row->bid) }}</td>
                       <td>{{ date('M d, Y h:i:s a', strtotime($row->created_at)) }}</td>
                     </tr>
                     @endforeach
@@ -93,6 +98,7 @@
               </div>
     	</div>
     </div>
+  </div>
 </div>
 @stop
 

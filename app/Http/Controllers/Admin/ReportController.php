@@ -53,7 +53,22 @@ class ReportController extends Controller
 
 
     	// get report
-    	$users = User::where('user_type', 2)->get();
+        $reports = Report::all();
+        $reportedUser = [];
+        $ru = 0;
+
+        foreach ($reports as $row) {
+            $reported = User::find($row->reported);
+            $reportedUser[$ru++] = [
+                'id' => $row->id,
+                'reported_id' => $reported->user_id,
+                'name' => $reported->firstname. ' ' .$reported->middlename. ' ' .$reported->lastname,
+                'email' => $reported->email,
+                'reason' => $row->reason,
+                'description' => $row->description
+            ];
+        }
+    	/*$users = User::where('user_type', 2)->get();
     	$reportedUser = [];
     	$ru = 0;
 
@@ -66,7 +81,7 @@ class ReportController extends Controller
     			'email' => $row->email,
     			'num_of_report' => $numReport->count()
     		];
-    	}
+    	}*/
 
     	$reportedUser = json_decode(json_encode($reportedUser));
 

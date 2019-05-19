@@ -45,11 +45,11 @@
 @stop
 
 @section('content')
-
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 <div class="row">
   <div class="col-md-8 offset-md-2">
       <div class="info" role="alert">
-        Posting a car cost ₱ 2000
+        Posting a car cost ₱ 2,000
       </div>
   </div>
 </div>
@@ -86,7 +86,7 @@
                   <input type="hidden" name="product_id" value="{{ $productID }}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Car Model<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Car Model <span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="e.g Wigo, Civic, Vios" data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="name" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
@@ -98,11 +98,11 @@
                   <input name="color" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Style<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Style<span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="e.g SUV, Truck, Sedan, Van" data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="style" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Brand ( e.g toyato, audi) <span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Brand <span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="e.g Toyato, Ford, Honda, Mitsubishi" data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="brand" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
@@ -130,7 +130,7 @@
                   <input name="cylinder" type="number" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Fuel<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Fuel<span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="e.g Gasoline, Diesel" data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="fuel" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
@@ -305,14 +305,18 @@ $(document).ready(function(){
   });
 });
 
-function Confirm()
-    {
-    var x = confirm("Are you sure you inputted the right details?");
-    if (x)
-      $("#paypalDiv").toggle(1000);
-      // return true;
-    else
-      return false;
-    }
+  function Confirm()
+  {
+  var x = confirm("Are you sure you inputted the right details?");
+  if (x)
+    $("#paypalDiv").toggle(1000);
+    // return true;
+  else
+    return false;
+  }
+
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+  });
 </script>
 @stop

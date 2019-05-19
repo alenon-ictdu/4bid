@@ -19,6 +19,7 @@
 @stop
 
 @section('content')
+<button type="button" class="btn btn-primary btn-xs" onclick="history.back();">Back</button>
 <form name="updateForm" id="updateForm" action="{{ route('item.update', [$product->product_id, $product->id]) }}" method="POST" enctype="multipart/form-data">
 <div class="col-md-8 offset-md-2">
 	@if(count($errors) > 0)

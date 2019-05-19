@@ -195,6 +195,7 @@
                 <div class="row">
                     @foreach($products as $row)
                     @if(!($lToday >= $row->duration2)) 
+                    @if(!in_array($row->id, $reportArr))
                     <!-- single product -->
                     <div class="col-lg-3 col-md-6">
                         <div class="single-product">
@@ -221,6 +222,7 @@
                         </div>
                     </div>
                     <!-- single product -->
+                    @endif
                     @endif
                     @endforeach
                     

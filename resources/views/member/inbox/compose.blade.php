@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-
+<button type="button" class="btn btn-primary btn-xs" style="margin-bottom: 10px;" onclick="history.back();">Back</button>
 
 <div class="col-md-8 offset-md-2 grid-margin stretch-card">
     <div class="card">

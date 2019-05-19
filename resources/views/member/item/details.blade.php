@@ -500,6 +500,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          <button type="button" class="btn btn-primary btn-xs" onclick="history.back();">Back</button>
 
 	<!-- #region Jssor Slider Begin -->
     <!-- Generator: Jssor Slider Maker -->
@@ -669,10 +670,10 @@
 	    <div class="col-md-3">
 	    	<div class="card">
 	        	<div class="card-body">
-              @if(Auth::user()->id == $product->user_id)
+              {{-- @if(Auth::user()->id == $product->user_id) --}}
               <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#biddersModal">View Bidders</button>
               <hr>
-              @endif
+              {{-- @endif --}}
 	        		  <p class="card-description">
 			            Status 
                   @if($pToday >= $product->duration) 
@@ -692,7 +693,7 @@
 			          </p>
 			          <p>
 			            Floor Price
-			            <span class="font-weight-bold" id="floorpriceE">₱ {{ $product->price }}</span> 
+			            <span class="font-weight-bold" id="floorpriceE">₱ {{ number_format($product->price) }}</span> 
 			          </p>
 			          <p>
 			            Color
@@ -765,7 +766,7 @@
 									</div>
 									<div class="col-sm-6">
 										<p>Floor Price</p>
-										<h5>₱ {{ $product->price }}</h5>
+										<h5>₱ {{ number_format($product->price) }}</h5>
 									</div>
 								</div>
 
@@ -858,7 +859,7 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                {{-- <th>Name</th> --}}
                 <th>Bid</th>
                 <th>Date</th>
               </tr>
@@ -866,9 +867,9 @@
             <tbody>
               @foreach($productBidders as $row)
               <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
-                <td>{{ $row->user->user_id }}</td>
-                <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td>
-                <td>{{ $row->bid }}</td>
+                <td>{{ $row->user->user_id }} @if($row->user->user_id == Auth::user()->user_id) <span class="text-warning">(You)</span> @endif</td>
+                {{-- <td>{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname  }}</td> --}}
+                <td>{{ '₱ '.number_format($row->bid) }}</td>
                 <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
               </tr>
               @endforeach

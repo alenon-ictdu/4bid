@@ -88,7 +88,7 @@ class ItemController extends Controller
                 'duration2' => $row->duration,
                 'duration' => date('M d, Y', strtotime($row->duration)),
                 'status' => $row->status,
-                'thumbnail' => $thumbnail->image,
+                'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];*/
 
@@ -120,7 +120,7 @@ class ItemController extends Controller
                         'duration' => date('M d, Y', strtotime($row->duration)),
                         'duration2' => $row->duration,
                         'status' => $row->status,
-                        'thumbnail' => $thumbnail->image,
+                        'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                         'created_at' => date('M d, Y', strtotime($row->created_at)),
                         'h_bidder_id' => $d->user_id,
                         'h_bidder' => $d->user->firstname. ' ' .$d->user->middlename. ' ' .$d->user->lastname,
@@ -149,7 +149,7 @@ class ItemController extends Controller
                     'duration' => date('M d, Y', strtotime($row->duration)),
                     'duration2' => $row->duration,
                     'status' => $row->status,
-                    'thumbnail' => $thumbnail->image,
+                    'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                     'created_at' => date('M d, Y', strtotime($row->created_at)),
                     'h_bidder_id' => 'none',
                     'h_bidder' => 'none',
@@ -242,7 +242,7 @@ class ItemController extends Controller
                 'year' => $row->year,
                 'duration' => date('M d, Y', strtotime($row->duration)),
                 'status' => $row->status,
-                'thumbnail' => $thumbnail->image,
+                'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];
 
@@ -327,7 +327,7 @@ class ItemController extends Controller
                 'year' => $row->year,
                 'duration' => date('M d, Y', strtotime($row->duration)),
                 'status' => $row->status,
-                'thumbnail' => $thumbnail->image,
+                'thumbnail' => empty($thumbnail) == true ? '':$thumbnail->image,
                 'created_at' => date('M d, Y', strtotime($row->created_at))
             ];
 
