@@ -164,9 +164,25 @@
       }
     }
 
-table.dataTable.no-footer {
-    border-bottom: none !important;;
-}
+    table.dataTable.no-footer {
+        border-bottom: none !important;;
+    }
+
+    #imageDiv {
+       width: 100%;
+       height: 170px;
+       background-color: #222222;
+       margin-bottom: 10px;
+    }
+
+    #imageDiv img {
+       max-width: 100% !important;
+       max-height: 100% !important;
+       width: 100% !important;
+       height: 100% !important;
+       object-fit: cover;
+       border-radius: 0;
+    }
 
 </style>
 @stop
@@ -234,7 +250,12 @@ table.dataTable.no-footer {
                     @else
                       @if(!in_array($row->id, $reportArr))
                       <tr>
-                        <td><img style="width: 100%; height: 100%; border-radius: 0%;" src="{{ asset('uploads/images/'.$row->thumbnail) }}"></td>
+                        <td>
+                          <div id="imageDiv">
+                           {{-- <img src="{{ asset('uploads/images/'.$row->thumbnail) }}"> --}}
+                           <img {{-- style="width: 100%; height: 100%; border-radius: 0%;" --}} src="{{ asset('uploads/images/'.$row->thumbnail) }}">
+                          </div>
+                        </td>
                         <td><a href="{{ route('item.details', $row->id) }}" class="font-weight-bold">{{ $row->name }}</a>  @if($row->user_id == Auth::user()->id) <span class="badge badge-primary ml-1"> Your Item </span> @endif</td>
                         <td>
                           Description: 

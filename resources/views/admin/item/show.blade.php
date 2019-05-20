@@ -384,8 +384,61 @@
 
         <hr>
 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          View Bidders
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bidders</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="table-responsive">
+                  <table id="biddersTable" class="table table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Bid</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($itemBidders as $row)
+                      <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
+                        <td>{{ $row->user->user_id }}</td>
+                        <td class="text-capitalize">{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname }}</td>
+                        <td>₱ {{ number_format($row->bid) }}</td>
+                        <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12" style="margin-top: 20px;">
+    <div class="card">
+      <div class="card-body">
         <h5>Car Details</h5>
-        
+        <hr>
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -444,55 +497,6 @@
             </tbody>
           </table>
         </div>
-
-        <hr>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          View Bidders
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Bidders</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="table-responsive">
-                  <table id="biddersTable" class="table table-hover table-striped">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Bid</th>
-                        <th>Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($itemBidders as $row)
-                      <tr title="{{ $row->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}">
-                        <td>{{ $row->user->user_id }}</td>
-                        <td class="text-capitalize">{{ $row->user->firstname. ' ' .$row->user->middlename. ' ' .$row->user->lastname }}</td>
-                        <td>₱ {{ number_format($row->bid) }}</td>
-                        <td>{{ date('M d, Y h:i:s', strtotime($row->created_at)) }}</td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>

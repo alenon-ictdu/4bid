@@ -63,7 +63,7 @@
 }
 
 #clockdiv > div{
-	padding: 10px;
+	padding: 5px;
 	border-radius: 3px;
 	background: #dc6826;
 	/*background: #308ee0;*/
@@ -71,7 +71,7 @@
 }
 
 #clockdiv div > span{
-	padding: 15px;
+	padding: 10px;
 	border-radius: 3px;
 	background: #d74436;
 	/*background: #007bff;*/
