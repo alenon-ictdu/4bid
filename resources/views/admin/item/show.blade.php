@@ -56,6 +56,26 @@
 .modal-lg {
     max-width: 60%;
 }
+
+ #imageDiv {
+           width: 170px;
+           height: 170px;
+           background-color: #222222;
+           margin-bottom: 10px;
+        }
+
+        #imageDiv img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+        }
+
+        .table td, .table th {
+    vertical-align: middle;
+    font-size: 15px;
+    line-height: 1;
+    white-space: nowrap;
+}
 </style>
 @stop
 
@@ -388,6 +408,25 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           View Bidders
         </button>
+
+        <hr>
+
+        <h5>Auctioneer</h5>
+
+        <div id="imageDiv">
+          <img src="{{ $product->user->image == '' ? asset('admin/images/faces/default_image.png'):asset('uploads/user/'.$product->user->image) }}">
+        </div>
+        <div>
+          <label><strong>{{ $product->user->firstname. ' ' .$product->user->middlename. ' ' .$product->user->lastname }}</strong></label>
+          <br>
+          <label>{{ $product->user->user_id }}</label>
+          <br>
+          <label>{{ $product->user->email }}</label>
+          <br>
+          <label>{{ $product->user->type == 'ftb' ? 'First Time Bidder':'Regular Bidder' }}</label>
+          <br>
+          <label>{{ $product->user->contact }}</label>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

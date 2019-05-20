@@ -24,6 +24,13 @@
     color: #cf1c46;
   }
 
+  .sidebar .nav .nav-item.nav-profile .nav-link .user-wrapper .profile-image img {
+    border-radius: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+
   .navbar.default-layout {
     font-family: "Poppins", sans-serif;
     background: linear-gradient(120deg, #eab307, #cf1c46);
