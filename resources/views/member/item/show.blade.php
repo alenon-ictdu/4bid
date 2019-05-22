@@ -355,10 +355,10 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-body">
-        <h4 class="card-title">Highest Bidder <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#biddersModal">View Bidders</button></h4>
           @if($highestBidder == 'None')
-
+            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#biddersModal">View Bidders</button>
           @else
+          <h4 class="card-title">Highest Bidder <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#biddersModal">View Bidders</button></h4>
           <div class="media">
             <img style="width: 100px;height: 100px; border-radius: 100%; margin-right: 10px;" src="{{ $highestBidder->user->image == '' ? asset('admin/images/faces/default_image.png'): asset('uploads/user/'.$highestBidder->user->image) }}">
             {{-- <i class="mdi mdi-earth icon-md text-info d-flex align-self-end mr-3"></i> --}}
@@ -658,7 +658,9 @@ deadline.setHours(deadline.getHours() - 12);
 
 @if($today >= $product->duration)
 @else
-  initializeClock('clockdiv', deadline);
+  @if($product->status == 1)
+    initializeClock('clockdiv', deadline);
+  @endif
 @endif
 
 @if(count($errors) > 0)

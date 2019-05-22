@@ -621,7 +621,9 @@ deadline.setHours(deadline.getHours() - 12);
 
 @if($today >= $product->duration)
 @else
-initializeClock('clockdiv', deadline);
+  @if($product->status == 1)
+    initializeClock('clockdiv', deadline);
+  @endif
 @endif
 
 var meta = document.createElement('meta');
