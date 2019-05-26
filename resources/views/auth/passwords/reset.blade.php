@@ -42,7 +42,8 @@
                 @endif
                 <h5 class="display-4">Reset Password</h5>
                 <hr>
-                <div class="form-group" >
+                <input type="hidden" name="email" class="form-control" value="{{ $email or old('email') }}" required>
+                {{-- <div class="form-group" >
                   <label class="label">Email Address</label>
                   <div class="input-group">
                     <input type="text" name="email" class="form-control" value="{{ $email or old('email') }}" required>
@@ -57,7 +58,7 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
-                </div>
+                </div> --}}
                 <div class="form-group" >
                   <label class="label">New Password</label>
                   <div class="input-group">

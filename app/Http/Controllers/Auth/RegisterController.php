@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -88,9 +89,14 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        if ((strlen($request->password) < 8) || (!preg_match("#[0-9]+#", $request->password)) || (!preg_match("#[a-z]+#", $request->password)) || (!preg_match("#[A-Z]+#", $request->password))) {
+            Session::flash('pass_error', 'true');
+            return redirect()->back();
+        }
+
         $this->validate($request, [
             'firstname' => 'required|string|max:255',
-            'middlename' => 'string|max:255',
+            // 'middlename' => 'string|max:255',
             'lastname' => 'required|string|max:255',
             'contact' => 'required|max:191',
             'address' => 'required|max:191',

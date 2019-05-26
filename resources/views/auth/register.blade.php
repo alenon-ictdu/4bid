@@ -17,12 +17,30 @@
   <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('admin/images/4bidlogo-mini.png') }}" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <style>
     .auth.register-bg-1 {
         background: url({{ asset('admin/images/auth/register2.jpg') }}) center center no-repeat;
         background-size: cover;
     }
+
+/*                            .auth.theme-one .auto-form-wrapper .form-group .input-group .form-control {
+    border: 1px solid #e65251;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+}
+
+.auth.theme-one .auto-form-wrapper .form-group .input-group .input-group-append .input-group-text {
+    border-radius: 0 6px 6px 0;
+    border-left: none;
+    border-color: #e65251;
+} */
+
+.error-input {
+  border-color: #e65251 !important;
+}
   </style>
+
 </head>
 
 <body>
@@ -37,10 +55,10 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Firstname" name="firstname" value="{{ old('firstname') }}" required>
+                    <input type="text" class="form-control  @if($errors->has('firstname')) error-input @endif" placeholder="Firstname" name="firstname" value="{{ old('firstname') }}" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('firstname'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('firstname')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('firstname'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -48,10 +66,10 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Middlename" name="middlename" value="{{ old('middlename') }}">
+                    <input type="text" class="form-control  @if($errors->has('middlename')) error-input @endif" placeholder="Middlename" name="middlename" value="{{ old('middlename') }}">
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('middlename'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('middlename')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('middlename'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -59,10 +77,10 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Lastname" name="lastname" value="{{ old('lastname') }}" required>
+                    <input type="text" class="form-control  @if($errors->has('lastname')) error-input @endif" placeholder="Lastname" name="lastname" value="{{ old('lastname') }}" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('lastname'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('lastname')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('lastname'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -70,10 +88,10 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Telephone/Mobile Number" name="contact" value="{{ old('contact') }}" required>
+                    <input type="text" class="form-control  @if($errors->has('contact')) error-input @endif" placeholder="Telephone/Mobile Number" name="contact" value="{{ old('contact') }}" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('contact'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('contact')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('contact'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -81,10 +99,10 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Home/Business Address" name="address" value="{{ old('address') }}" required>
+                    <input type="text" class="form-control  @if($errors->has('address')) error-input @endif" placeholder="Home/Business Address" name="address" value="{{ old('address') }}" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('address'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('address')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('address'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -92,10 +110,10 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required>
+                    <input id="emailInput" type="text" class="form-control  @if($errors->has('email')) error-input @endif" placeholder="Email Address" name="email" value="{{ old('email') }}" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('email'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('email')) error-input @endif" id="emailPop" tabindex="0" data-toggle="popover" data-trigger="focus"  data-content="The email address must be valid">
+                        <i class="fas fa-info-circle" style="color: #79b6eb; cursor: pointer;"></i>
                       </span>
                     </div>
                   </div>
@@ -103,10 +121,11 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif" placeholder="Password" name="password" id="passInput">
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('password'))!@endif</small>
+                      <span class="input-group-text @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif" id="passPop" tabindex="0" data-toggle="popover" data-trigger="focus" data-html="true" title="Password must:"  data-content="<li>Have at least one letter</li> <li>Have at least one capital letter</li> <li>Have at least one number</li> <li>Not contain multiple identical consecutive characters</li> <li>Not be the same as the account name</li> <li>Be at least 8 characters</li> <li>Not be a common password</li> <li>Not be used in past year</li>">
+                        <i class="fas fa-info-circle" style="color: #79b6eb; cursor: pointer;"></i>
+                        {{-- <small style="color: red;"> @if($errors->has('password'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
@@ -114,28 +133,19 @@
 
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" >
+                    <input type="password" class="form-control  @if($errors->has('password_confirmation')) error-input @endif" placeholder="Confirm Password" name="password_confirmation" >
                     <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('password_confirmation'))!@endif</small>
+                      <span class="input-group-text  @if($errors->has('password_confirmation')) error-input @endif">
+                        {{-- <small style="color: red;"> @if($errors->has('password_confirmation'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <!-- <div class="form-group">
-                  <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Paypal Account" name="paypal" >
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <small style="color: red;">@if ($errors->has('paypal'))!@endif</small>
-                      </span>
-                    </div>
-                  </div>
-                </div> -->
+               
 
                 <div class="form-group">
-                    <select class="form-control" name="type">
+                    <select class="form-control  @if($errors->has('type')) error-input @endif"" name="type">
                       <option value="none"> -- Type of Bidder -- </option>
                       <option value="ftb">First Time Bidder</option>
                       <option value="rb">Regular Bidder</option>
@@ -209,6 +219,27 @@
       // alert('click');
     });
   });
+
+  $("#emailInput").click(function(){
+    $('#emailPop').popover('show');
+  });
+  $("#emailInput").focusout(function(){
+    $('#emailPop').popover('hide');
+  });
+  $('#emailPop').popover();
+
+
+  $("#passInput").click(function(){
+    $('#passPop').popover('show');
+  });
+  $("#passInput").focusout(function(){
+    $('#passPop').popover('hide');
+  });
+  $('#passPop').popover();
+
+  @if(Session::has('pass_error')) 
+    $('#passPop').popover('show');
+  @endif 
   </script>
   
   

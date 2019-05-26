@@ -120,6 +120,7 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
+              <h5 style="float: right;"><span class="required-field">*</span> Required field</h5>
               <br>
                 <div class="form-group">
                   <label for="exampleInputName1">Piston Displacement<span class="required-field">*</span></label>
@@ -147,11 +148,11 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Car images<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Car images<span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="Photos must contain a minimum of 6 images." data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="product_image[]" id="productImage" type="file" class="form-control-file" required multiple>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputName1">Driver's license, OR/CR & Deed of sale<span class="required-field">*</span></label>
+                  <label for="exampleInputName1">Driver's license, OR/CR & Deed of sale<span class="required-field">*</span> <a href="#" data-toggle="tooltip" title="Please submit your government-issued photo ID and any applicable business licenses." data-placement="right"><i class="fas fa-info-circle"></i></a></label>
                   <input name="product_dod[]" type="file" class="form-control-file" required multiple>
                 </div>
                 <div class="form-group">
