@@ -219,7 +219,7 @@
         <p>6. The auctioneer does not guarantee the information on the sticker of the items specifications and will not arbitrate base only on information.</p>
         <p>7. Items declared "Working" and "Quick Tested" will be sold on an "AS IS, WHERE IS" "NO WARRANTY" "NO GUARANTEE", basis and are sold with all faults if any. 4BID, accepts no responsibility for anycar/s sold upon the fall of the hammer. The winning bidder is not allowed to WITHDRAW, RETURN, CANCEL and REFUND any lot(s) after being declared as the purchaser.</p>
         <p>8. Payments are strictly in the form of cash, manager's check or direct deposit to the Auctioneer's PayPal account.</p>
-        <p>9. Failure to settle the payment will terminate the users access to the system.</p>
+        <p>9. Failure to settle the agreement between the two parties will terminate the users access to the system.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
