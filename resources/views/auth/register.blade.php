@@ -24,21 +24,39 @@
         background-size: cover;
     }
 
-/*                            .auth.theme-one .auto-form-wrapper .form-group .input-group .form-control {
-    border: 1px solid #e65251;
-    border-right: none;
-    border-radius: 6px 0 0 6px;
-}
+    .error-input {
+      border-color: #e65251 !important;
+    }
 
-.auth.theme-one .auto-form-wrapper .form-group .input-group .input-group-append .input-group-text {
-    border-radius: 0 6px 6px 0;
-    border-left: none;
-    border-color: #e65251;
-} */
+    .pd-password-valid {
+      color: green;
+    }
 
-.error-input {
-  border-color: #e65251 !important;
-}
+    .pd-password-valid:before {
+      position: relative;
+      left: -5px;
+      content: "✔";
+    }
+
+    .pd-password-invalid {
+      color: red;
+    }
+
+    .pd-password-invalid:before {
+      position: relative;
+      left: -5px;
+      content: "✘";
+    }
+
+    .pd-password-message h3 {
+      font-size: 12pt;
+      margin-top: 10px;
+    }
+
+    .pd-password-message p {
+      margin: 7px 0 0 0;
+    }
+
   </style>
 
 </head>
@@ -119,16 +137,22 @@
                   </div>
                 </div>
 
+                <!-- <div class="form-group">
+                  <input type="text" class="form-control pd-password-validation" name="pass" required>
+                  <small class="pd-password-message form-text text-muted"></small>
+                </div> -->
+
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif" placeholder="Password" name="password" id="passInput">
+                    <input type="password" class="form-control @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif pd-password-validation" placeholder="Password" name="password" id="passInput" required>
                     <div class="input-group-append">
-                      <span class="input-group-text @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif" id="passPop" tabindex="0" data-toggle="popover" data-trigger="focus" data-html="true" title="Password must:"  data-content="<li>Have at least one letter</li> <li>Have at least one capital letter</li> <li>Have at least one number</li> <li>Not contain multiple identical consecutive characters</li> <li>Not be the same as the account name</li> <li>Be at least 8 characters</li> <li>Not be a common password</li> <li>Not be used in past year</li>">
+                      <span class="input-group-text @if(Session::has('pass_error')) error-input @endif  @if($errors->has('password')) error-input @endif" id="passPop" tabindex="0" data-toggle="popover" data-trigger="focus" data-html="true" title="Password must:"  data-content="<li>Have at least one letter</li> <li>Have at least one capital letter</li> <li>Have at least one number</li> <li>Be at least 8 characters</li> <li>Not be a common password</li>">
                         <i class="fas fa-info-circle" style="color: #79b6eb; cursor: pointer;"></i>
                         {{-- <small style="color: red;"> @if($errors->has('password'))!@endif</small> --}}
                       </span>
                     </div>
                   </div>
+                  <small class="pd-password-message form-text text-muted"></small>
                 </div>
 
                 <div class="form-group">
@@ -211,6 +235,7 @@
   <!-- inject:js -->
   <script src="{{ asset('admin/js/off-canvas.js') }}"></script>
   <script src="{{ asset('admin/js/misc.js') }}"></script>
+  <script src="{{ asset('js/pidie.js') }}"></script>
   <script>
   $(document).ready(function(){
     $("#terms_checkbox").click(function(){
@@ -219,6 +244,9 @@
       // alert('click');
     });
   });
+
+  var pidie = new Pidie();
+  pidie.passwordValidation();
 
   $("#emailInput").click(function(){
     $('#emailPop').popover('show');
@@ -229,16 +257,16 @@
   $('#emailPop').popover();
 
 
-  $("#passInput").click(function(){
+  /*$("#passInput").click(function(){
     $('#passPop').popover('show');
   });
   $("#passInput").focusout(function(){
     $('#passPop').popover('hide');
-  });
+  });*/
   $('#passPop').popover();
 
   @if(Session::has('pass_error')) 
-    $('#passPop').popover('show');
+    // $('#passPop').popover('show');
   @endif 
   </script>
   
