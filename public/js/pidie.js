@@ -24,11 +24,11 @@ class Pidie {
     });*/
     passValidate.addEventListener('keyup', function(){
       var passInfo = '';
-      passInfo += '<h3>Password must contain the following:</h3>';
-      passInfo += '<p id="pd-password-letter" class="pd-password-invalid">Only one or more <b>lowercase</b> letter</p>' 
-      passInfo += '<p id="pd-password-capital" class="pd-password-invalid">Only one or more <b>capital (uppercase)</b> letter</p>' 
-      passInfo += '<p id="pd-password-number" class="pd-password-invalid">Only one or more <b>number</b></p>' 
-      passInfo += '<p id="pd-password-length" class="pd-password-invalid">Minimum <b>8 characters</b> letter or number</p>' 
+      passInfo += '<h3>Password must have:</h3>';
+      passInfo += '<p id="pd-password-letter" class="pd-password-invalid">Small (lowercase) letters</p>' 
+      passInfo += '<p id="pd-password-capital" class="pd-password-invalid">Capital (uppercase) letters</p>' 
+      passInfo += '<p id="pd-password-number" class="pd-password-invalid">At least one number</p>' 
+      passInfo += '<p id="pd-password-length" class="pd-password-invalid">8 or more characters</p>' 
       passMessage.innerHTML = passInfo;
       var lowerCaseLetters = /[a-z]/g;
       var letter = document.getElementById('pd-password-letter');
