@@ -19,9 +19,9 @@ class Pidie {
     if(passMessage){
       passMessage.innerHTML = passValidate.getAttribute('title');
     }
-    /*passValidate.addEventListener('blur', function(){
+    passValidate.addEventListener('blur', function(){
       passMessage.innerHTML = passValidate.getAttribute('title');
-    });*/
+    });
     passValidate.addEventListener('keyup', function(){
       var passInfo = '';
       passInfo += '<h3>Password must have:</h3>';
